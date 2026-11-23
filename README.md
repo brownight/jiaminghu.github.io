@@ -10,7 +10,7 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
-The portrait, Google Scholar/LinkedIn/X links, and selected publication list are in place. Personal Life includes six photographs with a full-size viewer. The scrollable homepage News section includes the Unity internship, three paper acceptances (including Agents’ Last Exam), and the Terminal-Bench-Science v0.1 release with Jiaming's Senior Reviewer and Outreach Lead roles.
+The portrait, Google Scholar/LinkedIn/X links, and selected publication list are in place. Personal Life includes six photographs with a full-size viewer. The scrollable homepage News section includes the StatArena v0.1 release with Jiaming's project lead role, the Unity internship, three paper acceptances (including Agents’ Last Exam), and the Terminal-Bench-Science v0.1 release with Jiaming's Senior Reviewer and Outreach Lead roles.
 
 ## Editing
 
