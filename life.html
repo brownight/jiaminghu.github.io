@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, and a little game of chance.">
   <title>Personal Life · Jiaming Hu</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=charge-1">
   <script src="assets/site.js" defer></script>
   <script src="assets/gallery.js" defer></script>
-  <script src="assets/revolver.js" type="module"></script>
+  <script src="assets/revolver.js?v=charge-1" type="module"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -28,38 +28,28 @@
       </div>
     </section>
     <section id="fun" class="home-section chance-game" aria-labelledby="game-heading">
-      <div class="game-heading"><h2 id="game-heading">Just for fun</h2><span class="day-label" id="day-label"></span></div>
-      <p class="game-intro">Six chambers. One hit. Which shot will it be?</p>
-      <div class="game-layout">
-        <div class="cylinder-stage" aria-hidden="true">
-          <svg class="cylinder-art" viewBox="0 0 300 300" focusable="false">
-            <defs><radialGradient id="metal"><stop offset="0" stop-color="#fafbf9"/><stop offset=".8" stop-color="#e7ece9"/><stop offset="1" stop-color="#d3dcd7"/></radialGradient></defs>
-            <circle class="outer-orbit" cx="150" cy="150" r="141"/>
-            <path class="pointer" d="M143 2 L157 2 L150 15 Z"/>
-            <g id="cylinder" class="cylinder">
-              <circle cx="150" cy="150" r="126" fill="url(#metal)" stroke="#aebcb4"/>
-              <circle cx="150" cy="150" r="117" fill="none" stroke="#c1ccc5"/>
-              <circle class="chamber" data-chamber="0" cx="150" cy="65" r="27"/>
-              <circle class="chamber" data-chamber="1" cx="223.61" cy="107.5" r="27"/>
-              <circle class="chamber" data-chamber="2" cx="223.61" cy="192.5" r="27"/>
-              <circle class="chamber" data-chamber="3" cx="150" cy="235" r="27"/>
-              <circle class="chamber" data-chamber="4" cx="76.39" cy="192.5" r="27"/>
-              <circle class="chamber" data-chamber="5" cx="76.39" cy="107.5" r="27"/>
-              <circle cx="150" cy="150" r="22" fill="#f8faf8" stroke="#acbab1"/>
-              <circle cx="150" cy="150" r="7" fill="#879d90"/>
-            </g>
-          </svg>
-          <div id="hit-burst" class="hit-burst" hidden><span>✦</span></div>
+      <h2 id="game-heading">Just for fun</h2>
+      <div class="revolver-layout">
+        <div class="theory-note">
+          <p class="eyebrow">My revolver theory</p>
+          <h3>Firm in purpose.<br>Flexible in approach.</h3>
+          <p>Keep the goal in sight, but leave room for chance in how and when you get there.</p>
+          <p>Every wholehearted effort is a pull of the trigger. Give opportunity room to turn.</p>
         </div>
-        <div class="game-controls">
-        <ol class="attempts" aria-label="Your attempts"><li data-attempt="1">1</li><li data-attempt="2">2</li><li data-attempt="3">3</li><li data-attempt="4">4</li><li data-attempt="5">5</li><li data-attempt="6">6</li></ol>
-        <div class="result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-title">Feeling lucky?</strong><p id="result-detail">Your first attempt starts with a spin.</p></div>
-        <button id="play-button" class="primary-button" type="button" disabled>Spin the cylinder</button>
-        <button id="replay-button" class="text-button" type="button" hidden>Replay today's round</button>
-        <p class="game-footnote">A new round each day.</p>
+        <div class="pixel-game" aria-label="Revolver game">
+          <div class="pixel-heading"><span>TAKE YOUR SHOT</span><span id="shot-label">01 / 06</span></div>
+          <canvas id="revolver-scene" width="224" height="128" aria-hidden="true"></canvas>
+          <ol class="attempts" aria-label="Your shots"><li data-attempt="1">1</li><li data-attempt="2">2</li><li data-attempt="3">3</li><li data-attempt="4">4</li><li data-attempt="5">5</li><li data-attempt="6">6</li></ol>
+          <div class="charge-label"><label for="charge-meter">MOMENTUM</label><span id="charge-value" aria-hidden="true">0%</span></div>
+          <progress id="charge-meter" max="100" value="0">0%</progress>
+          <div class="result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-title">Make room for chance.</strong><p id="result-detail">One hidden hit. Six possible shots.</p></div>
+          <button id="play-button" class="charge-button" type="button" aria-describedby="charge-help" disabled>TAP TO CHARGE</button>
+          <p id="charge-help" class="charge-help">Tap repeatedly to build momentum. Slow down and it fades. Fill the bar to fire.</p>
+          <button id="new-round-button" class="new-round-button" type="button" disabled>NEW ROUND</button>
+          <p class="game-footnote">A fresh random spin every round.</p>
+          <noscript><p>Enable JavaScript to play.</p></noscript>
         </div>
       </div>
-      <noscript><p>Enable JavaScript to try the game.</p></noscript>
     </section>
   </main>
   <dialog class="photo-viewer" aria-label="Photo viewer">

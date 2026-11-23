@@ -6,7 +6,7 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 - `index.html` — academic homepage: portrait and social links, about, research interests, and news.
 - `publications.html` — twelve papers and benchmark projects grouped under game-theoretic approaches to AI, AI evaluation, and following curiosity.
-- `life.html` — fitness, basketball, hiking, photography, and a small daily game under “Just for fun”.
+- `life.html` — fitness, basketball, hiking, photography, and a small game under “Just for fun”.
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
@@ -26,7 +26,7 @@ Keep news in newest-first order. Acceptance dates use the official author-notifi
 
 The metaphor is about pursuing a goal and remaining open to opportunities. A hit represents success; there is no depiction of harm or gun aimed at a person.
 
-A local-calendar daily round draws one uniformly random successful position from 1–6 using Web Crypto. Spinning starts the round; each subsequent click advances one attempt. The game stops at the first hit. State persists in localStorage on this browser, and a new day creates a new round. Replaying keeps the same daily outcome. Without storage, it works for the current page session. It has no server, analytics, tracking, or cross-device synchronization.
+Each page load or **New round** draws a fresh, uniformly random successful position from 1–6 using Web Crypto with rejection sampling. There is no date seed or stored outcome. Each discrete click adds momentum; momentum decays with elapsed time. Only a full meter fires one shot, then the meter resets. Shots move through the six chambers and stop on the randomly placed hit. Holding a keyboard key does not auto-charge. The low-resolution canvas, square controls, and segmented meter give the game a pixel-art style; the short theory sits beside it on desktop and above it on mobile.
 
 Run the game logic checks with:
 

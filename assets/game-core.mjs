@@ -1,26 +1,31 @@
-export function localDay(date = new Date()) {
-  return [date.getFullYear(), String(date.getMonth() + 1).padStart(2, '0'), String(date.getDate()).padStart(2, '0')].join('-');
-}
+export const CHARGE_MAX = 100;
+export const CHARGE_PER_TAP = 22;
+export const CHARGE_DECAY_PER_SECOND = 24;
 
-export function newRound(day, hitAt) {
+// A fresh round samples a new position. Nothing is seeded by date or persisted.
+export function newRound(hitAt = chooseHit()) {
   if (!Number.isInteger(hitAt) || hitAt < 1 || hitAt > 6) throw new RangeError('hitAt must be between 1 and 6');
-  return { day, hitAt, attempts: 0, spun: false };
-}
-
-export function restoreRound(raw, day) {
-  try {
-    const value = JSON.parse(raw);
-    if (!value || value.day !== day || !Number.isInteger(value.hitAt) || value.hitAt < 1 || value.hitAt > 6 || !Number.isInteger(value.attempts) || value.attempts < 0 || value.attempts > value.hitAt || typeof value.spun !== 'boolean' || (!value.spun && value.attempts !== 0)) return null;
-    return { day, hitAt: value.hitAt, attempts: value.attempts, spun: value.spun };
-  } catch { return null; }
+  return { hitAt, attempts: 0 };
 }
 
 export function takeShot(round) {
-  if (!round.spun || round.attempts >= round.hitAt) return round;
+  if (round.attempts >= round.hitAt) return round;
   return { ...round, attempts: round.attempts + 1 };
 }
 
 export function hasHit(round) { return round.attempts === round.hitAt; }
+
+function clampCharge(charge) {
+  return Math.max(0, Math.min(CHARGE_MAX, charge));
+}
+
+export function decayCharge(charge, elapsedMs) {
+  return clampCharge(charge - CHARGE_DECAY_PER_SECOND * Math.max(0, elapsedMs) / 1000);
+}
+
+export function addCharge(charge) {
+  return clampCharge(charge + CHARGE_PER_TAP);
+}
 
 export function chooseHit(cryptoSource = globalThis.crypto) {
   const bytes = new Uint8Array(1);
