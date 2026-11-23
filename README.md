@@ -10,13 +10,15 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
-This is an initial draft. The portrait and Google Scholar/LinkedIn links are in place. The X URL, full publication list, and photography have not yet been supplied. The homepage News section includes the Unity internship, two NeurIPS 2026 acceptances, and the Terminal-Bench-Science v0.1 release. Their placeholders are deliberately identifiable; no publication records or photographs are fabricated.
+This is an initial draft. The portrait and Google Scholar/LinkedIn links are in place. The X URL, full publication list, and photography have not yet been supplied. The scrollable homepage News section includes the Unity internship, three paper acceptances (including Agents’ Last Exam), and the Terminal-Bench-Science v0.1 release with Jiaming's Senior Reviewer and Outreach Lead roles.
 
 ## Editing
 
 Edit page text directly in the corresponding HTML files. Shared styles are in `assets/style.css`. Social icons and the copyright year are in `assets/site.js`.
 
 The profile photo is `assets/jiaming-hu.jpg`; its presentation is controlled by the `.portrait` style. Replace each pending social `<span>` with an `<a>` containing the real profile URL. Add publication records in `publications.html` and dated news in the homepage News section. Replace the photography placeholder with the owner's images and captions.
+
+Keep news in newest-first order. Acceptance dates use the official author-notification schedules: [NeurIPS 2026](https://neurips.cc/Conferences/2026/Dates) (September 24) and [ML × OR](https://mlxor-2026.github.io/) (September 29). The [Terminal-Bench-Science announcement](https://www.terminal-bench-science.ai/announcement) is dated August 27, 2026. The Unity internship month was supplied by Jiaming.
 
 ## Game
 
