@@ -80,6 +80,22 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .page-heading { padding-top: 38px; margin-bottom: 28px; }
 .lede { font-size: 1.0625rem; line-height: 1.6; color: var(--muted); margin-bottom: 0; }
 
+/* Publications grouped by research direction. */
+.publications-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+.publications-heading h1 { margin-bottom: 0; }
+.publications-heading > a { font-size: .875rem; color: var(--accent); }
+.publication-group + .publication-group { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 24px; }
+.publication-group h2 { font-size: 1.125rem; margin-bottom: 18px; }
+.publication-list { list-style: none; padding: 0; margin: 0; }
+.publication-list li + li { margin-top: 18px; }
+.publication-list h3 { margin: 0 0 4px; font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.publication-list h3 a { text-decoration: none; }
+.publication-list h3 a:hover { text-decoration: underline; }
+.publication-meta { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.6; }
+.publication-meta a { color: var(--accent); text-decoration: none; white-space: nowrap; }
+.publication-meta a:hover { text-decoration: underline; }
+.publication-meta span { margin-inline: 5px; }
+
 /* A compact, optional game beneath the photography section. */
 .chance-game { scroll-margin-top: 24px; }
 .game-layout { display: grid; grid-template-columns: 180px minmax(0, 280px); gap: 32px; align-items: center; margin-top: 19px; }
