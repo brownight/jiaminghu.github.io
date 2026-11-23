@@ -10,13 +10,13 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
-This is an initial draft. The portrait, Google Scholar/LinkedIn/X URLs, publication list, news, and photography have not yet been supplied. Their placeholders are deliberately identifiable; no publication records or photographs are fabricated.
+This is an initial draft. The portrait and Google Scholar/LinkedIn links are in place. The X URL, publication list, news, and photography have not yet been supplied. Their placeholders are deliberately identifiable; no publication records or photographs are fabricated.
 
 ## Editing
 
 Edit page text directly in the corresponding HTML files. Shared styles are in `assets/style.css`. Social icons and the copyright year are in `assets/site.js`.
 
-Replace the portrait placeholder with an image and descriptive alt text. Replace each pending social `<span>` with an `<a>` containing the real profile URL. Add publication records in `publications.html` and dated news in the homepage News section. Replace the photography placeholder with the owner's images and captions.
+The profile photo is `assets/jiaming-hu.jpg`; its presentation is controlled by the `.portrait` style. Replace each pending social `<span>` with an `<a>` containing the real profile URL. Add publication records in `publications.html` and dated news in the homepage News section. Replace the photography placeholder with the owner's images and captions.
 
 ## Game
 
