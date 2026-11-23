@@ -31,8 +31,16 @@ Each page load or **New round** draws a fresh, uniformly random successful posit
 Run the game logic checks with:
 
 ```sh
-node --test tests/game.test.mjs
+node --test tests/game.test.mjs tests/revolver-motion.test.mjs
 ```
+
+Each shot fires, then visibly rotates the small cylinder by one chamber before the controls unlock, including the successful shot. New rounds spin the cylinder several times. These animations never change the random outcome; reduced-motion preferences skip the animation while preserving the same chamber progression.
+
+## Page views
+
+The three page footers share a small `views` badge from [Hits](https://hits.sh/). `assets/site.js` makes one SVG request per page load on `jiaminghu.com` or `www.jiaminghu.com`, with no referrer sent and no third-party JavaScript. All pages use the same server-stored counter. Local previews do not count.
+
+The total begins when this counter is enabled; it cannot recover earlier visits. It counts page loads, including refreshes and automated requests, rather than unique people. Requests blocked by a browser or a service outage may not count. If the badge fails or times out, it stays hidden without displaying a fabricated total.
 
 ## Local preview
 

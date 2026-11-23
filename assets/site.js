@@ -7,3 +7,31 @@ const icons = {
 };
 document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icons[el.dataset.icon] || ''; });
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+
+// One shared count for the production site; previews never increment it.
+const viewCounter = document.querySelector('[data-view-counter]');
+if (viewCounter && ['jiaminghu.com', 'www.jiaminghu.com'].includes(location.hostname)) {
+  const badge = document.createElement('img');
+  badge.alt = 'Total site views';
+  badge.height = 18;
+  badge.referrerPolicy = 'no-referrer';
+  badge.decoding = 'async';
+  let finished = false;
+  const timeout = setTimeout(() => {
+    finished = true;
+    viewCounter.hidden = true;
+  }, 12000);
+  badge.onload = () => {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timeout);
+    viewCounter.hidden = badge.naturalWidth === 0;
+  };
+  badge.onerror = () => {
+    finished = true;
+    clearTimeout(timeout);
+    viewCounter.hidden = true;
+  };
+  viewCounter.appendChild(badge);
+  badge.src = 'https://hits.sh/jiaminghu.com.svg?label=views&style=flat-square&color=7b827c&labelColor=7b827c';
+}

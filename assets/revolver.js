@@ -1,5 +1,6 @@
 import { newRound, takeShot, hasHit, decayCharge, addCharge } from './game-core.mjs?v=charge-1';
-import { drawRevolverScene } from './revolver-scene.mjs?v=newton-2';
+import { drawRevolverScene } from './revolver-scene.mjs?v=chamber-3';
+import { shotMotion, spinMotion } from './revolver-motion.mjs?v=chamber-3';
 
 const play = document.querySelector('#play-button');
 const restart = document.querySelector('#new-round-button');
@@ -14,7 +15,8 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let round = newRound();
 let charge = 0;
 let lastTime = performance.now();
-let busyUntil = 0;
+let motion = null;
+let cylinderAngle = 0;
 let animation = '';
 let restoreControlFocus = false;
 let lastPaintedCharge = -1;
@@ -33,10 +35,10 @@ function updateCharge(now) {
 
 function renderState() {
   const hit = hasHit(round);
-  const busy = busyUntil > performance.now();
+  const busy = motion !== null;
   play.disabled = busy || hit;
   restart.disabled = busy;
-  play.textContent = busy ? (animation === 'spin' ? 'SPINNING…' : 'FIRING…') : hit ? 'HIT!' : 'TAP TO CHARGE';
+  play.textContent = busy ? (animation === 'spin' ? 'SPINNING…' : animation === 'turn' ? 'TURNING…' : 'FIRING…') : hit ? 'HIT!' : 'TAP TO CHARGE';
   shotLabel.textContent = `${String(hit ? round.attempts : round.attempts + 1).padStart(2, '0')} / 06`;
   document.querySelectorAll('[data-attempt]').forEach((el, i) => {
     const taken = i < round.attempts;
@@ -58,12 +60,35 @@ function renderState() {
 }
 
 function drawScene(now) {
-  const phase = animation === 'spin' && !reducedMotion.matches ? Math.floor(now / 85) % 6 : 0;
   const firing = animation === 'fire' && !reducedMotion.matches;
-  const frame = phase + (firing ? 10 : 0) + round.attempts * 20 + (hasHit(round) ? 200 : 0);
+  const frame = `${Math.round(cylinderAngle * 180 / Math.PI)}:${firing}:${round.attempts}:${hasHit(round)}`;
   if (frame === lastFrame) return;
   lastFrame = frame;
-  drawRevolverScene(ctx, { round, animation, now, reducedMotion: reducedMotion.matches });
+  drawRevolverScene(ctx, { round, animation, cylinderAngle, reducedMotion: reducedMotion.matches });
+}
+
+function advanceMotion(now) {
+  if (!motion) return;
+  const sample = motion.kind === 'shot' ? shotMotion : spinMotion;
+  const state = sample(motion.fromAngle, now - motion.startedAt, reducedMotion.matches);
+  const phaseChanged = animation !== state.phase;
+  cylinderAngle = state.angle;
+  animation = state.phase;
+  if (state.done) {
+    motion = null;
+    renderState();
+    if (restoreControlFocus && [document.body, play, restart].includes(document.activeElement)) {
+      (hasHit(round) ? restart : play).focus({ preventScroll: true });
+    }
+    restoreControlFocus = false;
+  } else if (phaseChanged) {
+    renderState();
+  }
+}
+
+function startMotion(kind, now) {
+  motion = { kind, fromAngle: cylinderAngle, startedAt: now };
+  advanceMotion(now);
 }
 
 play.addEventListener('keydown', event => {
@@ -72,15 +97,14 @@ play.addEventListener('keydown', event => {
 });
 play.addEventListener('click', () => {
   const now = performance.now();
-  if (now < busyUntil || hasHit(round)) return;
+  if (motion || hasHit(round)) return;
   updateCharge(now);
   charge = addCharge(charge);
   if (charge >= 100) {
     restoreControlFocus = document.activeElement === play;
     round = takeShot(round);
     charge = 0;
-    animation = 'fire';
-    busyUntil = now + 450;
+    startMotion('shot', now);
     renderState();
   }
   updateCharge(now);
@@ -88,13 +112,12 @@ play.addEventListener('click', () => {
 });
 restart.addEventListener('click', () => {
   const now = performance.now();
-  if (now < busyUntil) return;
+  if (motion) return;
   restoreControlFocus = document.activeElement === restart;
   round = newRound();
   charge = 0;
   lastTime = now;
-  animation = 'spin';
-  busyUntil = now + 650;
+  startMotion('spin', now);
   lastFrame = -1;
   renderState();
   updateCharge(now);
@@ -102,18 +125,12 @@ restart.addEventListener('click', () => {
 });
 function tick(now) {
   updateCharge(now);
-  if (animation && now >= busyUntil) {
-    animation = '';
-    renderState();
-    if (restoreControlFocus && [document.body, play, restart].includes(document.activeElement)) {
-      (hasHit(round) ? restart : play).focus({ preventScroll: true });
-    }
-    restoreControlFocus = false;
-  }
+  advanceMotion(now);
   drawScene(now);
   requestAnimationFrame(tick);
 }
 // Never restore yesterday's outcome: every page load and new round is a fresh draw.
+startMotion('spin', lastTime);
 renderState();
 updateCharge(lastTime);
 drawScene(lastTime);

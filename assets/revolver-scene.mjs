@@ -2,7 +2,7 @@ export const SCENE_WIDTH = 384;
 export const SCENE_HEIGHT = 176;
 
 // Low-resolution game scenery. Every mark is a solid, integer-aligned pixel.
-export function drawRevolverScene(ctx, { round, animation = '', now = 0, reducedMotion = false }) {
+export function drawRevolverScene(ctx, { round, animation = '', cylinderAngle = -round.attempts * Math.PI / 3, reducedMotion = false }) {
   const p = {
     sky: '#17261f', horizon: '#21392b', grass: '#425d3c', grassLight: '#718154',
     earth: '#6e6040', earthDark: '#4a4630', ink: '#101d16', cream: '#e5ead6',
@@ -26,7 +26,6 @@ export function drawRevolverScene(ctx, { round, animation = '', now = 0, reduced
   };
   const hit = round.attempts > 0 && round.attempts === round.hitAt;
   const firing = animation === 'fire' && !reducedMotion;
-  const spin = animation === 'spin' && !reducedMotion ? Math.floor(now / 85) % 6 : 0;
   const kick = firing ? -1 : 0;
 
   ctx.imageSmoothingEnabled = false;
@@ -124,12 +123,18 @@ export function drawRevolverScene(ctx, { round, animation = '', now = 0, reduced
   disk(cx, cy, 20, p.ink);
   disk(cx, cy, 18, p.sage);
   disk(cx, cy, 16, p.sageDark);
-  const holes = [[0,-10],[9,-5],[9,5],[0,10],[-9,5],[-9,-5]];
-  holes.forEach(([dx, dy], i) => {
-    const chamber = (i - spin + 6) % 6;
+  for (let chamber = 0; chamber < 6; chamber++) {
+    const angle = cylinderAngle - Math.PI / 2 + chamber * Math.PI / 3;
+    const dx = Math.cos(angle) * 10;
+    const dy = Math.sin(angle) * 10;
     const taken = chamber < round.attempts;
     const success = hit && chamber + 1 === round.attempts;
     disk(cx + dx, cy + dy, 4, success ? p.gold : taken ? '#a7b58f' : p.ink);
-  });
+  }
+  // A fixed index and moving rim marker make even six identical holes visibly turn.
+  rect(cx - 2, cy - 24, 5, 2, p.cream);
+  rect(cx - 1, cy - 22, 3, 2, p.cream);
+  const markerAngle = cylinderAngle - Math.PI / 3;
+  rect(cx + Math.cos(markerAngle) * 17 - 1, cy + Math.sin(markerAngle) * 17 - 1, 3, 3, p.cream);
   rect(cx - 1, cy - 1, 3, 3, p.cream);
 }
