@@ -130,9 +130,21 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .life > .page-heading { margin-bottom: 20px; }
 .life > p { max-width: 620px; }
 .life .home-section { margin-top: 26px; }
-.gallery-placeholder { min-height: 104px; display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: .9375rem; }
-.gallery-placeholder svg { flex: 0 0 36px; width: 36px; height: 36px; }
-.gallery-placeholder p { margin: 0; }
+.photo-gallery { columns: 2; column-gap: 14px; margin-top: 18px; }
+.photo-gallery a { display: block; break-inside: avoid; margin-bottom: 14px; cursor: zoom-in; }
+.photo-gallery img { display: block; width: 100%; height: auto; }
+.photo-viewer-open { overflow: hidden; }
+.photo-viewer { width: 100%; max-width: none; height: 100%; height: 100dvh; max-height: none; margin: 0; padding: 16px 24px; border: 0; background: #131614; color: #fff; }
+.photo-viewer::backdrop { background: #131614; }
+.photo-viewer-layout { height: 100%; display: flex; flex-direction: column; gap: 14px; }
+.photo-viewer-toolbar, .photo-viewer-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; font-size: .875rem; }
+.photo-viewer-toolbar { min-height: 40px; }
+.photo-viewer-stage { min-height: 0; flex: 1; display: flex; justify-content: center; }
+.photo-viewer-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.photo-viewer button { min-height: 44px; padding: 8px 12px; background: transparent; border: 1px solid #59615b; border-radius: 2px; color: #fff; font-size: .875rem; }
+.photo-viewer button:hover { background: #303831; }
+.photo-viewer a { color: #fff; }
+.photo-viewer button:focus-visible, .photo-viewer a:focus-visible { outline-color: #fff; }
 
 @keyframes reveal { from { transform: translate(-50%,-50%) scale(.3); opacity: 0; } to { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
 @media (max-width: 740px) {
@@ -142,6 +154,8 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   .socials a, .socials span { flex-basis: 28px; width: 28px; }
 }
 @media (max-width: 520px) {
+  .photo-gallery { columns: 1; }
+  .photo-viewer { padding: 12px; }
   .container, .header-inner { width: calc(100% - 36px); }
   .header-inner { flex-direction: column; align-items: flex-start; gap: 0; padding-top: 13px; }
   nav { gap: 22px; }

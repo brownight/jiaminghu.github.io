@@ -10,13 +10,13 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
-The portrait, Google Scholar/LinkedIn links, and selected publication list are in place. The X URL and photography have not yet been supplied. The scrollable homepage News section includes the Unity internship, three paper acceptances (including Agents’ Last Exam), and the Terminal-Bench-Science v0.1 release with Jiaming's Senior Reviewer and Outreach Lead roles.
+The portrait, Google Scholar/LinkedIn/X links, and selected publication list are in place. Personal Life includes six photographs with a full-size viewer. The scrollable homepage News section includes the Unity internship, three paper acceptances (including Agents’ Last Exam), and the Terminal-Bench-Science v0.1 release with Jiaming's Senior Reviewer and Outreach Lead roles.
 
 ## Editing
 
 Edit page text directly in the corresponding HTML files. Shared styles are in `assets/style.css`. Social icons and the copyright year are in `assets/site.js`.
 
-The profile photo is `assets/jiaming-hu.jpg`; its presentation is controlled by the `.portrait` style. Replace each pending social `<span>` with an `<a>` containing the real profile URL. Add publication records in `publications.html` and dated news in the homepage News section. Replace the photography placeholder with the owner's images and captions.
+The profile photo is `assets/jiaming-hu.jpg`; its presentation is controlled by the `.portrait` style. Social profile URLs are in `index.html`. Add publication records in `publications.html` and dated news in the homepage News section. Original photographs are in `assets/photos/`; their display order and descriptive alt text are in `life.html`. Images preserve the supplied files and aspect ratios. `assets/gallery.js` adds a native-dialog viewer with previous/next controls, keyboard navigation, and Escape to close. Without JavaScript, each photo links directly to its original file.
 
 Publication titles link to their arXiv records or official release pages, with additional project and user-supplied Google Scholar links where available. Venue labels reflect confirmed acceptances; other papers use their arXiv year. Terminal-Bench-Science is labeled as a benchmark release. Humanity's Last Exam links to the arXiv author list, rather than assigning a venue from a different author version.
 

@@ -7,6 +7,7 @@
   <title>Personal Life · Jiaming Hu</title>
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/site.js" defer></script>
+  <script src="assets/gallery.js" defer></script>
   <script src="assets/revolver.js" type="module"></script>
 </head>
 <body>
@@ -17,7 +18,14 @@
     <p>I enjoy working out, playing basketball, hiking, and photography.</p>
     <section class="home-section" aria-labelledby="photos-heading">
       <h2 id="photos-heading">Through my lens</h2>
-      <div class="gallery-placeholder"><svg viewBox="0 0 64 64" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="18" width="48" height="35" rx="4"/><path d="M20 18l4-7h16l4 7"/><circle cx="32" cy="35" r="11"/></svg><p>A collection of photographs, coming soon.</p></div>
+      <div class="photo-gallery">
+        <a href="assets/photos/03.jpg"><img src="assets/photos/03.jpg" width="1080" height="1607" decoding="async" alt="A person standing in a blue lake beside a duck and driftwood, with snowy mountains beyond."></a>
+        <a href="assets/photos/05.jpg"><img src="assets/photos/05.jpg" width="1441" height="1080" loading="lazy" decoding="async" alt="Two people passing a pale brick building patterned with strong shadows."></a>
+        <a href="assets/photos/02.jpg"><img src="assets/photos/02.jpg" width="1590" height="1080" loading="lazy" decoding="async" alt="A person in a light-colored hat beneath colorful bunting between brick buildings."></a>
+        <a href="assets/photos/06.jpg"><img src="assets/photos/06.jpg" width="1620" height="1080" loading="lazy" decoding="async" alt="Visitors beside paintings beneath a red-and-white striped canopy at an outdoor art stall."></a>
+        <a href="assets/photos/04.jpg"><img src="assets/photos/04.jpg" width="2048" height="1331" loading="lazy" decoding="async" alt="A brightly lit Van Leeuwen ice cream shop at night, with parked cars in the foreground."></a>
+        <a href="assets/photos/01.jpg"><img src="assets/photos/01.jpg" width="1115" height="1080" loading="lazy" decoding="async" alt="Dark beams frame blue sky, desert plants, and a person standing in silhouette."></a>
+      </div>
     </section>
     <section id="fun" class="home-section chance-game" aria-labelledby="game-heading">
       <div class="game-heading"><h2 id="game-heading">Just for fun</h2><span class="day-label" id="day-label"></span></div>
@@ -54,6 +62,13 @@
       <noscript><p>Enable JavaScript to try the game.</p></noscript>
     </section>
   </main>
+  <dialog class="photo-viewer" aria-label="Photo viewer">
+    <div class="photo-viewer-layout">
+      <div class="photo-viewer-toolbar"><span id="photo-counter" role="status" aria-live="polite"></span><button id="photo-close" type="button" autofocus>Close</button></div>
+      <div class="photo-viewer-stage"><img id="photo-full" alt=""></div>
+      <div class="photo-viewer-controls"><button id="photo-prev" type="button">Previous</button><a id="photo-original" target="_blank" rel="noopener">Open original</a><button id="photo-next" type="button">Next</button></div>
+    </div>
+  </dialog>
   <footer class="container site-footer"><span>© <span data-year></span> Jiaming Hu</span></footer>
 </body>
 </html>
