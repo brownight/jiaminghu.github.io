@@ -10,7 +10,7 @@ A lightweight, three-page personal website for **jiaminghu.com**. Plain HTML, CS
 
 The old `revolver.html` URL redirects to `life.html#fun`.
 
-This is an initial draft. The portrait and Google Scholar/LinkedIn links are in place. The X URL, publication list, news, and photography have not yet been supplied. Their placeholders are deliberately identifiable; no publication records or photographs are fabricated.
+This is an initial draft. The portrait and Google Scholar/LinkedIn links are in place. The X URL, full publication list, and photography have not yet been supplied. The homepage News section includes the Unity internship, two NeurIPS 2026 acceptances, and the Terminal-Bench-Science v0.1 release. Their placeholders are deliberately identifiable; no publication records or photographs are fabricated.
 
 ## Editing
 
