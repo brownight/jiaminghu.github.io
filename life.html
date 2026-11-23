@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, and a little game of chance.">
+  <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, games, and a little chance.">
   <title>Personal Life · Jiaming Hu</title>
-  <link rel="stylesheet" href="assets/style.css?v=charge-1">
+  <link rel="stylesheet" href="assets/style.css?v=newton-2">
   <script src="assets/site.js" defer></script>
   <script src="assets/gallery.js" defer></script>
-  <script src="assets/revolver.js?v=charge-1" type="module"></script>
+  <script src="assets/revolver.js?v=newton-2" type="module"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header"><div class="header-inner"><a class="wordmark" href="./">Jiaming Hu</a><nav aria-label="Main navigation"><a href="./">Home</a><a href="publications.html">Publications</a><a href="life.html" aria-current="page">Personal Life</a></nav></div></header>
   <main id="main" class="container life">
     <div class="page-heading"><p class="eyebrow">Outside of research</p><h1>Personal Life</h1><p class="lede">In the gym, on the court,<br>out on a trail, or behind a camera.</p></div>
-    <p>I enjoy working out, playing basketball, hiking, and photography.</p>
+    <p>I enjoy working out, playing basketball, hiking, photography, and playing games across different genres.</p>
     <section class="home-section" aria-labelledby="photos-heading">
       <h2 id="photos-heading">Through my lens</h2>
       <div class="photo-gallery">
@@ -29,26 +29,31 @@
     </section>
     <section id="fun" class="home-section chance-game" aria-labelledby="game-heading">
       <h2 id="game-heading">Just for fun</h2>
-      <div class="revolver-layout">
-        <div class="theory-note">
-          <p class="eyebrow">My revolver theory</p>
-          <h3>Firm in purpose.<br>Flexible in approach.</h3>
-          <p>Keep the goal in sight, but leave room for chance in how and when you get there.</p>
-          <p>Every wholehearted effort is a pull of the trigger. Give opportunity room to turn.</p>
+      <div class="pixel-game" aria-label="Newton's luck: a revolver game">
+        <div class="pixel-heading"><span>NEWTON'S LUCK</span><span id="shot-label">01 / 06</span></div>
+        <div class="game-scene">
+          <div class="theory-note">
+            <p class="eyebrow">My revolver theory</p>
+            <h3>Firm in purpose.<br>Flexible in approach.</h3>
+            <p>Leave room for chance in how and when you get there. Every full effort is another shot.</p>
+          </div>
+          <canvas id="revolver-scene" width="384" height="176" aria-hidden="true"></canvas>
         </div>
-        <div class="pixel-game" aria-label="Revolver game">
-          <div class="pixel-heading"><span>TAKE YOUR SHOT</span><span id="shot-label">01 / 06</span></div>
-          <canvas id="revolver-scene" width="224" height="128" aria-hidden="true"></canvas>
-          <ol class="attempts" aria-label="Your shots"><li data-attempt="1">1</li><li data-attempt="2">2</li><li data-attempt="3">3</li><li data-attempt="4">4</li><li data-attempt="5">5</li><li data-attempt="6">6</li></ol>
-          <div class="charge-label"><label for="charge-meter">MOMENTUM</label><span id="charge-value" aria-hidden="true">0%</span></div>
-          <progress id="charge-meter" max="100" value="0">0%</progress>
-          <div class="result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-title">Make room for chance.</strong><p id="result-detail">One hidden hit. Six possible shots.</p></div>
-          <button id="play-button" class="charge-button" type="button" aria-describedby="charge-help" disabled>TAP TO CHARGE</button>
-          <p id="charge-help" class="charge-help">Tap repeatedly to build momentum. Slow down and it fades. Fill the bar to fire.</p>
-          <button id="new-round-button" class="new-round-button" type="button" disabled>NEW ROUND</button>
-          <p class="game-footnote">A fresh random spin every round.</p>
-          <noscript><p>Enable JavaScript to play.</p></noscript>
+        <ol class="attempts" aria-label="Your shots"><li data-attempt="1">1</li><li data-attempt="2">2</li><li data-attempt="3">3</li><li data-attempt="4">4</li><li data-attempt="5">5</li><li data-attempt="6">6</li></ol>
+        <div class="game-console">
+          <div class="momentum-controls">
+            <div class="charge-label"><label for="charge-meter">MOMENTUM</label><span id="charge-value" aria-hidden="true">0%</span></div>
+            <progress id="charge-meter" max="100" value="0">0%</progress>
+            <div class="result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-title">Make room for chance.</strong><p id="result-detail">One hidden hit. Six possible shots.</p></div>
+          </div>
+          <div class="game-actions">
+            <button id="play-button" class="charge-button" type="button" aria-describedby="charge-help" disabled>TAP TO CHARGE</button>
+            <button id="new-round-button" class="new-round-button" type="button" disabled>NEW ROUND</button>
+          </div>
         </div>
+        <p id="charge-help" class="charge-help">Tap repeatedly to build momentum. Slow down and it fades. Fill the bar to fire.</p>
+        <p class="game-footnote">A fresh random spin every round.</p>
+        <noscript><p>Enable JavaScript to play.</p></noscript>
       </div>
     </section>
   </main>

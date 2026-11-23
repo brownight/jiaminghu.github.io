@@ -1,4 +1,5 @@
 import { newRound, takeShot, hasHit, decayCharge, addCharge } from './game-core.mjs?v=charge-1';
+import { drawRevolverScene } from './revolver-scene.mjs?v=newton-2';
 
 const play = document.querySelector('#play-button');
 const restart = document.querySelector('#new-round-button');
@@ -56,69 +57,13 @@ function renderState() {
   }
 }
 
-// Draw at low resolution with solid square pixels; no image assets or smoothing.
-function pixelCircle(x, y, radius, color) {
-  ctx.fillStyle = color;
-  for (let yy = -radius; yy <= radius; yy++) {
-    for (let xx = -radius; xx <= radius; xx++) {
-      if (xx * xx + yy * yy <= radius * radius) ctx.fillRect(x + xx, y + yy, 1, 1);
-    }
-  }
-}
-function rect(x, y, w, h, color) { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); }
 function drawScene(now) {
   const phase = animation === 'spin' && !reducedMotion.matches ? Math.floor(now / 85) % 6 : 0;
   const firing = animation === 'fire' && !reducedMotion.matches;
   const frame = phase + (firing ? 10 : 0) + round.attempts * 20 + (hasHit(round) ? 200 : 0);
   if (frame === lastFrame) return;
   lastFrame = frame;
-  rect(0, 0, 224, 128, '#17261f');
-  rect(13, 113, 198, 1, '#354b3c');
-  // Small pixel revolver, pointed toward an abstract target.
-  rect(101, 40, 70, 18, '#a9bb96');
-  rect(101, 40, 70, 4, '#e5ead6');
-  rect(101, 54, 70, 4, '#687e5d');
-  rect(168, 38, 7, 22, '#627557');
-  rect(168, 39, 5, 4, '#e5ead6');
-  rect(156, 34, 5, 6, '#b9c9a6');
-  rect(43, 44, 25, 35, '#869b72');
-  rect(35, 35, 14, 9, '#a9bb96');
-  rect(35, 30, 6, 9, '#dce3cb');
-  rect(40, 76, 27, 10, '#a67c4f');
-  rect(36, 86, 28, 12, '#a67c4f');
-  rect(32, 98, 28, 12, '#a67c4f');
-  rect(35, 108, 22, 5, '#694e35');
-  rect(44, 82, 6, 20, '#bf9a65');
-  rect(72, 78, 29, 4, '#a9bb96');
-  rect(97, 72, 4, 12, '#a9bb96');
-  rect(75, 82, 22, 8, '#a9bb96');
-  rect(79, 78, 14, 8, '#17261f');
-  rect(80, 72, 4, 9, '#dce3cb');
-  pixelCircle(79, 55, 30, '#0c1710');
-  pixelCircle(79, 55, 27, '#b6c6a0');
-  pixelCircle(79, 55, 24, '#8d9e77');
-  const positions = [[0,-16],[14,-8],[14,8],[0,16],[-14,8],[-14,-8]];
-  positions.forEach(([dx, dy], i) => {
-    const chamber = (i - phase + 6) % 6;
-    const fired = chamber < round.attempts;
-    const successful = hasHit(round) && chamber + 1 === round.attempts;
-    pixelCircle(79 + dx, 55 + dy, 7, '#657850');
-    pixelCircle(79 + dx, 55 + dy, 5, successful ? '#e2bd6c' : fired ? '#607455' : '#263a29');
-  });
-  pixelCircle(79, 55, 4, '#e5ead6');
-  rect(78, 54, 3, 3, '#61744f');
-  const target = hasHit(round) ? '#e2bd6c' : '#6e8966';
-  rect(202, 38, 2, 25, target); rect(190, 50, 26, 2, target);
-  rect(195, 42, 17, 2, target); rect(195, 59, 17, 2, target);
-  rect(194, 44, 2, 15, target); rect(211, 44, 2, 15, target);
-  if (firing) {
-    rect(178, 46, 10, 8, '#e2bd6c'); rect(181, 42, 3, 16, '#e2bd6c');
-    rect(190, 49, 8, 2, '#e5ead6');
-  }
-  if (hasHit(round)) {
-    rect(200, 47, 6, 8, '#e2bd6c');
-    rect(188, 34, 3, 3, '#e2bd6c'); rect(215, 66, 3, 3, '#e2bd6c');
-  }
+  drawRevolverScene(ctx, { round, animation, now, reducedMotion: reducedMotion.matches });
 }
 
 play.addEventListener('keydown', event => {
