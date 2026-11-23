@@ -1,10 +1,59 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Outside of research: fitness, basketball, hiking, and photography."><title>Personal Life · Jiaming Hu</title><link rel="stylesheet" href="assets/style.css"><script src="assets/site.js" defer></script></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, and a little game of chance.">
+  <title>Personal Life · Jiaming Hu</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/revolver.js" type="module"></script>
+</head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header"><div class="header-inner"><a class="wordmark" href="./">Jiaming Hu</a><nav aria-label="Main navigation"><a href="./">Home</a><a href="revolver.html">Revolver Theory</a><a href="life.html" aria-current="page">Personal Life</a></nav></div></header>
-  <main id="main" class="container life"><div class="page-heading"><p class="eyebrow">Outside of research</p><h1>Personal Life</h1><p class="lede">In the gym, on the court,<br>out on a trail, or behind a camera.</p></div><p>I enjoy working out, playing basketball, hiking, and photography.</p><section class="home-section"><h2>Through my lens</h2><div class="gallery-placeholder"><svg viewBox="0 0 64 64" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="18" width="48" height="35" rx="4"/><path d="M20 18l4-7h16l4 7"/><circle cx="32" cy="35" r="11"/></svg><p>A collection of photographs, coming soon.</p></div></section></main>
-  <footer class="container site-footer"><span>© <span data-year></span> Jiaming Hu</span><a href="revolver.html">Leave room for chance.</a></footer>
+  <header class="site-header"><div class="header-inner"><a class="wordmark" href="./">Jiaming Hu</a><nav aria-label="Main navigation"><a href="./">Home</a><a href="publications.html">Publications</a><a href="life.html" aria-current="page">Personal Life</a></nav></div></header>
+  <main id="main" class="container life">
+    <div class="page-heading"><p class="eyebrow">Outside of research</p><h1>Personal Life</h1><p class="lede">In the gym, on the court,<br>out on a trail, or behind a camera.</p></div>
+    <p>I enjoy working out, playing basketball, hiking, and photography.</p>
+    <section class="home-section" aria-labelledby="photos-heading">
+      <h2 id="photos-heading">Through my lens</h2>
+      <div class="gallery-placeholder"><svg viewBox="0 0 64 64" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="18" width="48" height="35" rx="4"/><path d="M20 18l4-7h16l4 7"/><circle cx="32" cy="35" r="11"/></svg><p>A collection of photographs, coming soon.</p></div>
+    </section>
+    <section id="fun" class="home-section chance-game" aria-labelledby="game-heading">
+      <div class="game-heading"><h2 id="game-heading">Just for fun</h2><span class="day-label" id="day-label"></span></div>
+      <p class="game-intro">Six chambers. One hit. Which shot will it be?</p>
+      <div class="game-layout">
+        <div class="cylinder-stage" aria-hidden="true">
+          <svg class="cylinder-art" viewBox="0 0 300 300" focusable="false">
+            <defs><radialGradient id="metal"><stop offset="0" stop-color="#fafbf9"/><stop offset=".8" stop-color="#e7ece9"/><stop offset="1" stop-color="#d3dcd7"/></radialGradient></defs>
+            <circle class="outer-orbit" cx="150" cy="150" r="141"/>
+            <path class="pointer" d="M143 2 L157 2 L150 15 Z"/>
+            <g id="cylinder" class="cylinder">
+              <circle cx="150" cy="150" r="126" fill="url(#metal)" stroke="#aebcb4"/>
+              <circle cx="150" cy="150" r="117" fill="none" stroke="#c1ccc5"/>
+              <circle class="chamber" data-chamber="0" cx="150" cy="65" r="27"/>
+              <circle class="chamber" data-chamber="1" cx="223.61" cy="107.5" r="27"/>
+              <circle class="chamber" data-chamber="2" cx="223.61" cy="192.5" r="27"/>
+              <circle class="chamber" data-chamber="3" cx="150" cy="235" r="27"/>
+              <circle class="chamber" data-chamber="4" cx="76.39" cy="192.5" r="27"/>
+              <circle class="chamber" data-chamber="5" cx="76.39" cy="107.5" r="27"/>
+              <circle cx="150" cy="150" r="22" fill="#f8faf8" stroke="#acbab1"/>
+              <circle cx="150" cy="150" r="7" fill="#879d90"/>
+            </g>
+          </svg>
+          <div id="hit-burst" class="hit-burst" hidden><span>✦</span></div>
+        </div>
+        <div class="game-controls">
+        <ol class="attempts" aria-label="Your attempts"><li data-attempt="1">1</li><li data-attempt="2">2</li><li data-attempt="3">3</li><li data-attempt="4">4</li><li data-attempt="5">5</li><li data-attempt="6">6</li></ol>
+        <div class="result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-title">Feeling lucky?</strong><p id="result-detail">Your first attempt starts with a spin.</p></div>
+        <button id="play-button" class="primary-button" type="button" disabled>Spin the cylinder</button>
+        <button id="replay-button" class="text-button" type="button" hidden>Replay today's round</button>
+        <p class="game-footnote">A new round each day.</p>
+        </div>
+      </div>
+      <noscript><p>Enable JavaScript to try the game.</p></noscript>
+    </section>
+  </main>
+  <footer class="container site-footer"><span>© <span data-year></span> Jiaming Hu</span></footer>
 </body>
 </html>

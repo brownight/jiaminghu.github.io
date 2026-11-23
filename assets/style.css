@@ -63,27 +63,19 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .home-section h2 { margin-bottom: 0; font-size: .9375rem; }
 .draft-note { font-size: .9375rem; color: var(--muted); }
 
-/* Personal writing shares the same scale and alignment as the home page. */
+/* Page headings and the small personal-life game. */
 .page-heading { padding-top: 38px; margin-bottom: 28px; }
-.chinese-title { font-family: var(--font); font-size: .9375rem; font-weight: 400; letter-spacing: .1em; vertical-align: middle; display: inline-block; margin-left: 20px; color: var(--muted); }
 .lede { font-size: 1.0625rem; line-height: 1.6; color: var(--muted); margin-bottom: 0; }
-.theory-layout { display: grid; grid-template-columns: minmax(0, 1fr) 285px; gap: 35px; align-items: start; }
-.essay p { margin-bottom: 17px; }
-.essay blockquote { border-left: 2px solid var(--accent); padding: 0 0 0 17px; margin: 23px 0 0; font: 400 1.35rem/1.5 var(--serif); letter-spacing: -.02em; color: var(--accent); }
-.essay [lang=zh-CN] { line-height: 1.9; }
-.essay [lang=zh-CN] blockquote { font-family: var(--font); font-size: 1.125rem; }
-.language-switch { display: flex; gap: 18px; align-items: center; border-bottom: 1px solid var(--line); margin: 0 0 18px; padding: 0 0 9px; }
-.language-switch button { border: 0; padding: 3px 0; background: none; color: var(--muted); font-size: .875rem; line-height: 1.5; }
-.language-switch button[aria-pressed=true] { color: var(--accent); font-weight: 600; }
 
-/* A small interactive margin note, rather than a separate dashboard card. */
-.chance-game { border-left: 1px solid var(--line); padding: 0 0 0 24px; }
+/* A compact, optional game beneath the photography section. */
+.chance-game { scroll-margin-top: 24px; }
+.game-layout { display: grid; grid-template-columns: 180px minmax(0, 280px); gap: 32px; align-items: center; margin-top: 19px; }
+.game-controls { min-width: 0; }
 .game-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-.game-heading .eyebrow { font-size: .75rem; font-weight: 500; margin-bottom: 5px; }
-.game-heading h2 { font-size: 1rem; letter-spacing: -.025em; margin-bottom: 10px; }
+.game-heading h2 { margin-bottom: 8px; }
 .day-label { font-size: .75rem; white-space: nowrap; color: var(--muted); padding-top: 1px; }
 .game-intro { font-size: .875rem; line-height: 1.5; color: var(--muted); margin-bottom: 0; }
-.cylinder-stage { position: relative; width: min(185px, 100%); margin: 17px auto 15px; }
+.cylinder-stage { position: relative; width: min(180px, 100%); margin: 0 auto; }
 .cylinder-art { width: 100%; overflow: visible; }
 .outer-orbit { fill: none; stroke: #dbe4dc; stroke-dasharray: 2 8; }
 .pointer { fill: var(--accent); }
@@ -97,7 +89,7 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .attempts li { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid #d9e2d9; border-radius: 50%; font-size: .75rem; color: #717f74; line-height: 1; }
 .attempts li.miss { background: #e6ece6; border-color: #e6ece6; color: #6e7e72; }
 .attempts li.hit { background: var(--accent); color: #fff; border-color: var(--accent); }
-.result { min-height: 82px; text-align: center; }
+.result { min-height: 67px; text-align: center; }
 .result strong { display: block; font-size: .875rem; font-weight: 600; line-height: 1.45; }
 .result p { font-size: .875rem; line-height: 1.5; color: var(--muted); margin: 5px 0 12px; }
 .primary-button { background: var(--accent); color: #fff; border: 1px solid var(--accent); border-radius: 2px; width: 100%; min-height: 42px; padding: 9px 12px; font-size: .875rem; font-weight: 500; transition: background .2s; }
@@ -119,8 +111,6 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   .portrait-placeholder { width: 140px; }
   .socials { gap: 0; }
   .socials a, .socials span { flex-basis: 28px; width: 28px; }
-  .theory-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .chance-game { width: min(340px, 100%); border-left: 0; border-top: 1px solid var(--line); padding: 20px 0 0; }
 }
 @media (max-width: 520px) {
   .container, .header-inner { width: calc(100% - 36px); }
@@ -135,9 +125,10 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   .affiliation { grid-column: 2; margin-bottom: 8px; }
   .bio h1 { font-size: 2.35rem; margin-bottom: 20px; }
   .bio .home-section { grid-template-columns: 100px minmax(0, 1fr); gap: 10px; }
+  .game-layout { grid-template-columns: minmax(0, 1fr); gap: 20px; max-width: 300px; }
+  .cylinder-stage { width: 150px; }
   .page-heading { padding-top: 27px; margin-bottom: 24px; }
   h1 { font-size: 2.25rem; }
-  .chinese-title { display: block; margin: 10px 0 0; }
   .site-footer { margin-top: 32px; font-size: .75rem; flex-wrap: wrap; gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {

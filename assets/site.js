@@ -7,7 +7,3 @@ const icons = {
 };
 document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icons[el.dataset.icon] || ''; });
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
-document.querySelectorAll('[data-language]').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-language]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-  document.querySelectorAll('[data-essay]').forEach(essay => { essay.hidden = essay.dataset.essay !== button.dataset.language; });
-}));

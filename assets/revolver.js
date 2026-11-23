@@ -43,19 +43,19 @@ function render() {
   replay.disabled = busy;
   if (hit) {
     title.textContent = `Shot ${round.attempts} — a hit.`;
-    detail.textContent = 'Give your best. Leave room for chance.';
+    detail.textContent = 'Nice! Come back tomorrow for a new round.';
     play.textContent = "Today's round complete";
   } else if (!round.spun) {
-    title.textContent = 'Leave room for the unexpected.';
+    title.textContent = 'Feeling lucky?';
     detail.textContent = 'Your first attempt starts with a spin.';
     play.textContent = 'Spin the cylinder';
   } else if (round.attempts === 0) {
-    title.textContent = 'A new possibility.';
+    title.textContent = 'All set.';
     detail.textContent = 'Ready for your first attempt?';
     play.textContent = 'Take shot 1';
   } else {
     title.textContent = `Shot ${round.attempts} — an empty chamber.`;
-    detail.textContent = 'Keep your aim. Try the next possibility.';
+    detail.textContent = 'Not this one. Try the next chamber.';
     play.textContent = `Take shot ${round.attempts + 1}`;
   }
 }
@@ -71,7 +71,7 @@ play.addEventListener('click', async () => {
     cylinder.classList.add('spinning');
     rotation += 1440;
     cylinder.style.transform = `rotate(${rotation}deg)`;
-    title.textContent = 'Making room for chance…';
+    title.textContent = 'Spinning…';
     play.textContent = 'Spinning…';
     await pause(1100);
     cylinder.classList.remove('spinning');
