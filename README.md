@@ -44,9 +44,9 @@ The total begins when this counter is enabled; it cannot recover earlier visits.
 
 The views badge is transparent until hovered or keyboard-focused. Touch visitors can tap its footer area to reveal it and tap elsewhere to hide it.
 
-## Bullet appreciation
+## Game likes
 
-The small Bullet button in the game uses the documented public [Counter API](https://counterapi.com/) endpoint under the `jiaminghu.com` namespace. A page load reads with `readOnly=true`; only an explicit button click requests an increment. The returned server total is shared across visitors. Refreshing the page and firing the revolver do not send bullets. Repeated deliberate clicks are allowed; this is a playful appreciation total, not a unique-person count.
+The small Like button has a pointed pixel bullet icon and uses the documented public [Counter API](https://counterapi.com/) endpoint under the `jiaminghu.com` namespace. A page load reads with `readOnly=true`; only an explicit button click requests an increment. The returned server total is shared across visitors. Refreshing the page and firing the revolver do not add likes. After server confirmation, the button becomes Liked and remembers this in browser local storage to prevent repeated likes from that browser. If storage is unavailable, the confirmed state lasts for the current page session. This is a playful appreciation total, not a verified unique-person count.
 
 No API keys, third-party scripts, cookies, local fabricated totals, or automatic increment retries are used. Previews never call the production counter. A request failure keeps the last confirmed number or displays `—`. These public counts depend on the external service and are not tamper-proof. Its API rejected requests from the development environment during implementation, so live connectivity was not verified here.
 

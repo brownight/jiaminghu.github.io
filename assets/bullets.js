@@ -1,46 +1,53 @@
 import { createBulletCounter } from './bullet-counter.mjs?v=bullet-1';
 
 const button = document.querySelector('#bullet-button');
+const label = document.querySelector('#bullet-label');
 const count = document.querySelector('#bullet-count');
 const status = document.querySelector('#bullet-status');
 
-if (button && count && status) {
+if (button && label && count && status) {
   if (['jiaminghu.com', 'www.jiaminghu.com'].includes(location.hostname)) {
     let total = null;
-    let flash;
+    const likedKey = 'newtons-revolver-liked-v1';
+    let liked = false;
+    try { liked = localStorage.getItem(likedKey) === 'yes'; } catch { /* Storage may be unavailable. */ }
     const counter = createBulletCounter({
       onCount(value) {
         total = value;
         count.textContent = value.toLocaleString('en-US');
       },
       onState(state) {
-        const busy = state === 'loading' || state === 'sending';
-        button.disabled = busy;
-        button.setAttribute('aria-busy', String(busy));
-        button.classList.toggle('is-sending', state === 'sending');
-        button.setAttribute('aria-label', `Leave a bullet${total === null ? '' : `; ${total} collected in total`}`);
         if (state === 'collected') {
-          button.classList.add('is-collected');
-          status.textContent = `Thanks for the bullet! ${total} collected in total.`;
-          button.title = `${total} bullets collected. Leave another?`;
-          clearTimeout(flash);
-          flash = setTimeout(() => button.classList.remove('is-collected'), 1200);
+          liked = true;
+          try { localStorage.setItem(likedKey, 'yes'); } catch { /* Keep the session's confirmed like. */ }
+        }
+        const busy = state === 'loading' || state === 'sending';
+        button.disabled = busy || liked;
+        button.setAttribute('aria-busy', String(busy));
+        button.setAttribute('aria-pressed', String(liked));
+        button.classList.toggle('is-sending', state === 'sending');
+        button.classList.toggle('is-collected', liked);
+        label.textContent = liked ? 'Liked' : 'Like';
+        button.setAttribute('aria-label', `${liked ? 'You liked this game' : 'Like this game'}${total === null ? '' : `; ${total} likes in total`}`);
+        if (state === 'collected') {
+          status.textContent = `Thanks for the like! ${total} likes in total.`;
+          button.title = 'You liked this game. Thank you!';
         } else if (state === 'error') {
           if (total === null) count.textContent = '—';
-          status.textContent = 'The bullet count could not be confirmed. Please try again later.';
+          status.textContent = 'The like count could not be confirmed. Please try again later.';
           button.title = 'Could not confirm the count. Please try again later.';
         } else if (state === 'ready') {
-          button.title = 'Like the game? Leave a bullet.';
+          button.title = liked ? 'You liked this game. Thank you!' : 'Like this game';
         } else if (state === 'sending') {
-          status.textContent = 'Sending your bullet…';
+          status.textContent = 'Sending your like…';
         }
       },
     });
-    button.addEventListener('click', () => counter.collect());
+    button.addEventListener('click', () => { if (!liked) counter.collect(); });
     counter.read();
   } else {
     // Local previews never read or increment the production count.
     count.textContent = '—';
-    button.title = 'Bullet collection is available on the live site.';
+    button.title = 'Likes are available on the live site.';
   }
 }
