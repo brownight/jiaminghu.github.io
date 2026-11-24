@@ -34,7 +34,9 @@ Run the game logic checks with:
 node --test tests/game.test.mjs tests/revolver-motion.test.mjs
 ```
 
-Each shot fires, then visibly rotates the small cylinder by one chamber before the controls unlock, including the successful shot. New rounds spin the cylinder several times. These animations never change the random outcome; reduced-motion preferences skip the animation while preserving the same chamber progression.
+Each shot fires, then whips the small cylinder through a full revolution plus one chamber before the controls unlock, including the successful shot. It settles at the next chamber without a backward reset. New rounds spin the cylinder several times. These animations never change the random outcome; reduced-motion preferences skip the animation while preserving the same chamber progression.
+
+The small Plays counter beside the game's footer is transparent until hovered or keyboard-focused (tap to reveal on touchscreens). It counts the first actual shot in each round once, including rounds whose first shot is a hit. Page loads, charging taps, later shots in the same round, and pressing New Round without firing do not increment it. The same public Counter API used for likes stores this separate total; writes wait for a pending read and are never automatically retried. Local previews make no counter requests. Failed reads show `—` or the last confirmed total. As with likes, live connectivity remains unverified because the service blocked the development environment.
 
 ## Page views
 

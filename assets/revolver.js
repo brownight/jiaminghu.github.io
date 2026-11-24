@@ -1,6 +1,7 @@
 import { newRound, takeShot, hasHit, decayCharge, addCharge } from './game-core.mjs?v=charge-1';
 import { drawRevolverScene } from './revolver-scene.mjs?v=chamber-3';
-import { shotMotion, spinMotion } from './revolver-motion.mjs?v=chamber-3';
+import { shotMotion, spinMotion } from './revolver-motion.mjs?v=whip-1';
+import { initGamePlays } from './game-plays.mjs?v=plays-1';
 
 const play = document.querySelector('#play-button');
 const restart = document.querySelector('#new-round-button');
@@ -13,6 +14,8 @@ const canvas = document.querySelector('#revolver-scene');
 const ctx = canvas.getContext('2d');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let round = newRound();
+let roundNumber = 1;
+const recordPlay = initGamePlays();
 let charge = 0;
 let lastTime = performance.now();
 let motion = null;
@@ -103,6 +106,7 @@ play.addEventListener('click', () => {
   if (charge >= 100) {
     restoreControlFocus = document.activeElement === play;
     round = takeShot(round);
+    if (round.attempts === 1) recordPlay(roundNumber);
     charge = 0;
     startMotion('shot', now);
     renderState();
@@ -115,6 +119,7 @@ restart.addEventListener('click', () => {
   if (motion) return;
   restoreControlFocus = document.activeElement === restart;
   round = newRound();
+  roundNumber += 1;
   charge = 0;
   lastTime = now;
   startMotion('spin', now);

@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, games, and a little chance.">
   <title>Personal Life · Jiaming Hu</title>
-  <link rel="stylesheet" href="assets/style.css?v=bullet-1">
+  <link rel="stylesheet" href="assets/style.css?v=plays-1">
   <script src="assets/site.js?v=views-2" defer></script>
   <script src="assets/gallery.js" defer></script>
-  <script src="assets/revolver.js?v=chamber-3" type="module"></script>
+  <script src="assets/revolver.js?v=whip-1" type="module"></script>
   <script src="assets/bullets.js?v=like-1" type="module"></script>
 </head>
 <body>
@@ -54,6 +54,7 @@
         <p id="charge-help" class="charge-help">Tap repeatedly to build momentum. Slow down and it fades. Fill the bar to fire.</p>
         <div class="game-bottom">
           <p class="game-footnote">A fresh random spin every round.</p>
+          <button id="game-plays" class="game-plays" type="button" aria-label="Show total game plays" title="Rounds played — counted on the first shot of each round"><span>Plays</span><span id="game-play-count">…</span></button>
           <button id="bullet-button" class="bullet-button" type="button" aria-label="Like this game" aria-pressed="false" disabled><svg viewBox="0 0 16 20" width="16" height="20" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M7 0h2v2h1v2h1v2h1v14H4V6h1V4h1V2h1z"/><path fill="var(--pixel-bg)" d="M4 7h8v1H4zM4 17h8v1H4z"/><path fill="var(--pixel-ink)" d="M5 9h1v7H5z"/></svg><span id="bullet-label">Like</span><span id="bullet-count">…</span></button>
           <span id="bullet-status" class="sr-only" role="status" aria-live="polite"></span>
         </div>
