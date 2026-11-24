@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Outside of research: fitness, basketball, hiking, photography, games, and a little chance.">
   <title>Personal Life · Jiaming Hu</title>
-  <link rel="stylesheet" href="assets/style.css?v=views-1">
-  <script src="assets/site.js?v=views-1" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=bullet-1">
+  <script src="assets/site.js?v=views-2" defer></script>
   <script src="assets/gallery.js" defer></script>
   <script src="assets/revolver.js?v=chamber-3" type="module"></script>
+  <script src="assets/bullets.js?v=bullet-1" type="module"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -29,11 +30,10 @@
     </section>
     <section id="fun" class="home-section chance-game" aria-labelledby="game-heading">
       <h2 id="game-heading">Just for fun</h2>
-      <div class="pixel-game" aria-label="Newton's luck: a revolver game">
-        <div class="pixel-heading"><span>NEWTON'S LUCK</span><span id="shot-label">01 / 06</span></div>
+      <div class="pixel-game" aria-label="牛顿的左轮">
+        <div class="pixel-heading"><span lang="zh">牛顿的左轮</span><span id="shot-label">01 / 06</span></div>
         <div class="game-scene">
           <div class="theory-note">
-            <p class="eyebrow">My revolver theory</p>
             <h3>Firm in purpose.<br>Flexible in approach.</h3>
             <p>Leave room for chance in how and when you get there. Every full effort is another shot.</p>
           </div>
@@ -52,7 +52,11 @@
           </div>
         </div>
         <p id="charge-help" class="charge-help">Tap repeatedly to build momentum. Slow down and it fades. Fill the bar to fire.</p>
-        <p class="game-footnote">A fresh random spin every round.</p>
+        <div class="game-bottom">
+          <p class="game-footnote">A fresh random spin every round.</p>
+          <button id="bullet-button" class="bullet-button" type="button" aria-label="Leave a bullet" disabled><svg viewBox="0 0 16 20" width="16" height="20" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M6 1h4v2h2v14h1v2H3v-2h1V3h2z"/><path fill="var(--pixel-bg)" d="M4 6h8v1H4z"/><path fill="var(--pixel-ink)" d="M5 8h2v7H5z"/></svg><span>Bullet</span><span id="bullet-count">…</span></button>
+          <span id="bullet-status" class="sr-only" role="status" aria-live="polite"></span>
+        </div>
         <noscript><p>Enable JavaScript to play.</p></noscript>
       </div>
     </section>
@@ -64,6 +68,6 @@
       <div class="photo-viewer-controls"><button id="photo-prev" type="button">Previous</button><a id="photo-original" target="_blank" rel="noopener">Open original</a><button id="photo-next" type="button">Next</button></div>
     </div>
   </dialog>
-  <footer class="container site-footer"><span>© <span data-year></span> Jiaming Hu</span><span class="site-views" data-view-counter title="Total site page views since this counter was added" hidden></span></footer>
+  <footer class="container site-footer"><span>© <span data-year></span> Jiaming Hu</span><button class="site-views" type="button" data-view-counter title="Total site page views since this counter was added" aria-label="Show total site views" hidden></button></footer>
 </body>
 </html>

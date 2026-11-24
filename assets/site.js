@@ -10,6 +10,15 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
 
 // One shared count for the production site; previews never increment it.
 const viewCounter = document.querySelector('[data-view-counter]');
+if (viewCounter) {
+  viewCounter.addEventListener('pointerdown', event => {
+    if (event.pointerType === 'touch') viewCounter.classList.toggle('is-revealed');
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!viewCounter.contains(event.target)) viewCounter.classList.remove('is-revealed');
+  });
+  viewCounter.addEventListener('blur', () => viewCounter.classList.remove('is-revealed'));
+}
 if (viewCounter && ['jiaminghu.com', 'www.jiaminghu.com'].includes(location.hostname)) {
   const badge = document.createElement('img');
   badge.alt = 'Total site views';
