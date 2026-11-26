@@ -46,7 +46,7 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 
 /* A compact profile and a single reading column. */
 .home { padding-top: 42px; }
-.profile-layout { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 36px; }
+.profile-layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; }
 .profile { padding-top: 4px; }
 .portrait { display: block; width: 160px; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; background: var(--pale); }
 .socials { display: flex; align-items: center; gap: 2px; margin: 10px 0 18px; }
@@ -58,8 +58,8 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .profile-email { width: fit-content; font-size: .875rem; color: var(--accent); text-decoration: none; }
 .profile-email:hover { text-decoration: underline; }
 .profile-affiliations { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
-.profile-affiliations li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; align-items: start; font-size: .8125rem; line-height: 1.5; color: var(--muted); }
-.profile-affiliations img { display: block; width: 20px; height: 20px; object-fit: contain; margin-top: 1px; }
+.profile-affiliations li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 10px; align-items: start; font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.profile-affiliations img { display: block; width: 32px; height: 32px; object-fit: contain; margin-top: 1px; }
 .profile-affiliations strong { font-weight: 600; color: var(--ink); }
 .affiliation { font-size: .875rem; line-height: 1.5; margin: 0 0 12px; }
 .affiliation strong, .affiliation span { display: block; }
@@ -179,7 +179,7 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 
 @keyframes reveal { from { transform: translate(-50%,-50%) scale(.3); opacity: 0; } to { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
 @media (max-width: 740px) {
-  .profile-layout { grid-template-columns: 140px minmax(0, 1fr); gap: 27px; }
+  .profile-layout { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; }
   .portrait { width: 140px; }
   .socials { gap: 0; }
   .socials a, .socials span { flex-basis: 28px; width: 28px; }
