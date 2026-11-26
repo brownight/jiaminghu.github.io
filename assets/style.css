@@ -54,6 +54,13 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
 .socials a:hover { color: var(--accent); background: var(--pale); }
 .socials .pending-social { color: #b1b7b1; }
+.profile-details { display: grid; gap: 14px; }
+.profile-email { width: fit-content; font-size: .875rem; color: var(--accent); text-decoration: none; }
+.profile-email:hover { text-decoration: underline; }
+.profile-affiliations { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.profile-affiliations li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; align-items: start; font-size: .8125rem; line-height: 1.5; color: var(--muted); }
+.profile-affiliations img { display: block; width: 20px; height: 20px; object-fit: contain; margin-top: 1px; }
+.profile-affiliations strong { font-weight: 600; color: var(--ink); }
 .affiliation { font-size: .875rem; line-height: 1.5; margin: 0 0 12px; }
 .affiliation strong, .affiliation span { display: block; }
 .affiliation strong { font-weight: 600; }
@@ -189,6 +196,7 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   .profile { display: grid; grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: auto auto auto; column-gap: 23px; align-items: start; padding: 0; }
   .portrait { grid-column: 1; grid-row: 1 / 3; width: 112px; }
   .socials { grid-column: 1 / -1; grid-row: 3; gap: 3px; margin: 7px 0 0; }
+  .profile-details { grid-column: 2; grid-row: 1 / 3; }
   .affiliation { grid-column: 2; margin-bottom: 8px; }
   .bio h1 { font-size: 2.35rem; margin-bottom: 20px; }
   .news-window { max-height: 18rem; }
