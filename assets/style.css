@@ -47,12 +47,20 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 /* A compact profile and a single reading column. */
 .home { padding-top: 42px; }
 .profile-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; }
-.profile { padding-top: 4px; }
-.portrait { display: block; width: 200px; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; background: var(--pale); }
-.socials { display: flex; align-items: center; gap: 2px; margin: 10px 0 18px; }
-.socials a, .socials span { display: grid; place-items: center; width: 30px; height: 34px; flex: 0 0 30px; color: #4e5850; }
+.profile { --profile-photo-width: 200px; padding-top: 4px; }
+.portrait { display: block; width: var(--profile-photo-width); height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; background: var(--pale); }
+.socials { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; width: var(--profile-photo-width); margin: 10px 0 18px; }
+.socials > a, .socials > span, .socials .email-trigger { display: grid; place-items: center; width: 100%; height: 34px; padding: 0; border: 0; background: transparent; color: #4e5850; }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
-.socials a:hover { color: var(--accent); background: var(--pale); }
+.socials > a:hover, .socials .email-trigger:hover { color: var(--accent); background: var(--pale); }
+.email-contact { position: relative; }
+.email-popover { position: absolute; z-index: 5; top: calc(100% + 8px); left: 0; width: 232px; max-width: calc(100vw - 48px); padding: 14px; border: 1px solid var(--line); background: var(--paper); box-shadow: 0 6px 20px #2025211a; }
+.email-address { display: inline-block; color: var(--accent); font-size: .9375rem; text-decoration: none; user-select: all; }
+.email-address:hover { text-decoration: underline; }
+.email-actions { display: flex; gap: 8px; margin-top: 12px; }
+.email-actions button, .email-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-size: .8125rem; line-height: 1.4; text-decoration: none; }
+.email-actions button:hover, .email-actions a:hover { background: var(--pale); }
+.email-feedback { margin: 9px 0 0; color: var(--muted); font-size: .8125rem; line-height: 1.4; }
 .socials .pending-social { color: #b1b7b1; }
 .profile-details { display: grid; gap: 14px; }
 .profile-email { width: fit-content; font-size: .875rem; color: var(--accent); text-decoration: none; }
@@ -188,8 +196,8 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 @keyframes reveal { from { transform: translate(-50%,-50%) scale(.3); opacity: 0; } to { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
 @media (max-width: 680px) {
   .profile-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-  .profile { display: grid; grid-template-columns: 160px minmax(0, 1fr); column-gap: 24px; align-items: start; padding: 0; }
-  .portrait { grid-column: 1; grid-row: 1; width: 160px; }
+  .profile { --profile-photo-width: 160px; display: grid; grid-template-columns: 160px minmax(0, 1fr); column-gap: 24px; align-items: start; padding: 0; }
+  .portrait { grid-column: 1; grid-row: 1; }
   .socials { grid-column: 1; grid-row: 2; margin: 10px 0 0; }
   .profile-details { grid-column: 2; grid-row: 1 / 3; }
 }
@@ -202,9 +210,9 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   nav a { padding: 10px 0 13px; }
   .home { padding-top: 26px; }
   .profile-layout { grid-template-columns: minmax(0, 1fr); gap: 23px; }
-  .profile { grid-template-columns: minmax(0, 1fr); }
-  .portrait { grid-column: 1; grid-row: 1; width: 180px; }
-  .socials { grid-column: 1; grid-row: 2; gap: 3px; margin: 10px 0 18px; }
+  .profile { --profile-photo-width: 180px; grid-template-columns: minmax(0, 1fr); }
+  .portrait { grid-column: 1; grid-row: 1; }
+  .socials { grid-column: 1; grid-row: 2; margin: 10px 0 18px; }
   .profile-details { grid-column: 1; grid-row: 3; width: 200px; max-width: 100%; }
   .affiliation { grid-column: 2; margin-bottom: 8px; }
   .bio h1 { font-size: 2.35rem; margin-bottom: 20px; }

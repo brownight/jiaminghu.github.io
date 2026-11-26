@@ -8,6 +8,48 @@ const icons = {
 document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icons[el.dataset.icon] || ''; });
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
+// Keep the email address available even without a configured mail application.
+const emailContact = document.querySelector('.email-contact');
+if (emailContact) {
+  const trigger = emailContact.querySelector('[data-email-trigger]');
+  const panel = emailContact.querySelector('.email-popover');
+  const copyButton = emailContact.querySelector('[data-copy-email]');
+  const feedback = emailContact.querySelector('[data-email-feedback]');
+  function setEmailOpen(open, restoreFocus = false) {
+    panel.hidden = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      copyButton.textContent = 'Copy';
+      feedback.hidden = true;
+      feedback.textContent = '';
+    }
+    if (!open && restoreFocus) trigger.focus();
+  }
+  trigger.addEventListener('click', () => setEmailOpen(panel.hidden));
+  document.addEventListener('click', event => {
+    if (!emailContact.contains(event.target)) setEmailOpen(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) {
+      event.preventDefault();
+      setEmailOpen(false, true);
+    }
+  });
+  emailContact.addEventListener('focusout', event => {
+    if (event.relatedTarget && !emailContact.contains(event.relatedTarget)) setEmailOpen(false);
+  });
+  copyButton.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
+      copyButton.textContent = 'Copied';
+      feedback.textContent = 'Email address copied.';
+    } catch {
+      feedback.textContent = 'Select the address above to copy it.';
+    }
+    feedback.hidden = false;
+  });
+}
+
 // One shared count for the production site; previews never increment it.
 const viewCounter = document.querySelector('[data-view-counter]');
 if (viewCounter) {
