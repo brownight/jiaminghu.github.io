@@ -46,9 +46,9 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
 
 /* A compact profile and a single reading column. */
 .home { padding-top: 42px; }
-.profile-layout { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 28px; }
+.profile-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; }
 .profile { padding-top: 4px; }
-.portrait { display: block; width: 232px; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; background: var(--pale); }
+.portrait { display: block; width: 200px; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; background: var(--pale); }
 .socials { display: flex; align-items: center; gap: 2px; margin: 10px 0 18px; }
 .socials a, .socials span { display: grid; place-items: center; width: 30px; height: 34px; flex: 0 0 30px; color: #4e5850; }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
@@ -203,9 +203,9 @@ h2 { font-weight: 600; font-size: 1.05rem; line-height: 1.4; letter-spacing: -.0
   .home { padding-top: 26px; }
   .profile-layout { grid-template-columns: minmax(0, 1fr); gap: 23px; }
   .profile { grid-template-columns: minmax(0, 1fr); }
-  .portrait { grid-column: 1; grid-row: 1; width: 200px; }
+  .portrait { grid-column: 1; grid-row: 1; width: 180px; }
   .socials { grid-column: 1; grid-row: 2; gap: 3px; margin: 10px 0 18px; }
-  .profile-details { grid-column: 1; grid-row: 3; width: 232px; max-width: 100%; }
+  .profile-details { grid-column: 1; grid-row: 3; width: 200px; max-width: 100%; }
   .affiliation { grid-column: 2; margin-bottom: 8px; }
   .bio h1 { font-size: 2.35rem; margin-bottom: 20px; }
   .news-window { max-height: 18rem; }
